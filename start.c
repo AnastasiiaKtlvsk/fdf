@@ -17,7 +17,8 @@ int		main(int argc, char **argv)
   t_i *ti;
 
   ti = (t_i*)ft_memalloc(sizeof(t_i));
-  read_map(&ti, argv[1], -1);
-  while (1);
+//  read_map(&ti, argv[1], -1);
+  printf("validation result: %i",read_map(&ti, argv[1], -1));
+ // while (1);
 	return (0);
 }

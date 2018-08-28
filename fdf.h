@@ -31,7 +31,7 @@ typedef	struct		s_i // image
 	unsigned int	*c; //points
 }					t_i;
 
-int					read_map(t_i **ti, int fd, int i);
+int     read_map(t_i **ti, char *f, int i);
 
 
 void    print_state(t_i **ti); // temp
