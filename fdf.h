@@ -22,8 +22,6 @@ typedef	struct		s_i // image
 	int				xs; // size x
 	int				ys; // size y
 	int				cp; // count of points
-	char			**mp; // map
-	char			*lm;
     char			*d; // data
 	int				*x;
 	int				*y;
@@ -32,7 +30,6 @@ typedef	struct		s_i // image
 }					t_i;
 
 int     read_map(t_i **ti, char *f, int i);
-
 
 void    print_state(t_i **ti); // temp
 
