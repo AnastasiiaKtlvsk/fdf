@@ -1,17 +1,16 @@
 #include "fdf.h"
 
 
-void    free_type(t_i **ti)
+void    free_type(t_i *ti)
 {
     int i;
   
     i = -1;
   //  free((*ti)->d); 
-	free((*ti)->x);
-	free((*ti)->y);
-	free((*ti)->z);
-	free((*ti)->c);
-    free((*ti));
+	free((ti)->x);
+	free((ti)->y);
+	free((ti)->z);
+	free((ti)->c);
 }
 
 int     check_digits(char *str)
@@ -82,7 +81,7 @@ void    free_array(char **ar, int l)
     free(ar);
 }
 
-int     validate_row(t_i **ti, char *s, int y, int i) // n - norma , j = -1, i = -1
+int     validate_row(t_i *ti, char *s, int y, int i) // n - norma , j = -1, i = -1
 {
     char            **row;
     unsigned int    c;
@@ -92,9 +91,9 @@ int     validate_row(t_i **ti, char *s, int y, int i) // n - norma , j = -1, i =
     row = ft_strsplit(s, ' ');
     while (row[++i])
     {
-        (*ti)->y[(*ti)->cp] = y;
-        (*ti)->x[(*ti)->cp] = i;
-        (*ti)->z[(*ti)->cp] = ft_atoi(row[i]);
+        (ti)->y[(ti)->cp] = y;
+        (ti)->x[(ti)->cp] = i;
+        (ti)->z[(ti)->cp] = ft_atoi(row[i]);
         c = 0;
         if (ft_strchr(row[i], ','))
         {
@@ -102,11 +101,11 @@ int     validate_row(t_i **ti, char *s, int y, int i) // n - norma , j = -1, i =
             (ft_strchr(row[i], 'X')) ? c = atoi_hex(ft_strchr(row[i], 'X') + 1) : 0;
         }
         (c > 2147483647 || check_digits(row[i]) == 0) ? f = 0 : 0;
-        (*ti)->c[(*ti)->cp] = (int)c;
-        (*ti)->cp++;
+        (ti)->c[(ti)->cp] = (int)c;
+        (ti)->cp++;
     }
    free_array(row, i);
-    if (i != (*ti)->xs || f == 0){
+    if (i != (ti)->xs || f == 0){
         return (-1);
     }
 
@@ -114,30 +113,30 @@ int     validate_row(t_i **ti, char *s, int y, int i) // n - norma , j = -1, i =
 }
 
 
-int     read_map(t_i **ti, char *f, int i) // i = -1 ; f - file name
+int     read_map(t_i *ti, char *f, int i) // i = -1 ; f - file name
 {
     char *temp;
     int fd;
     int k;
 
     k = 1;
-    (*ti)->cp = 0;
-    (*ti)->ys = 0;
+    (ti)->cp = 0;
+    (ti)->ys = 0;
     fd = open(f, O_RDONLY);
     while (get_next_line(fd, &temp) > 0)
     {
-        (*ti)->ys++;
+        (ti)->ys++;
         free(temp);
     }
     close(fd);
     fd = open(f, O_RDONLY);
     if (get_next_line(fd, &temp) > 0)
     {
-       (*ti)->xs = count(temp);
-        (*ti)->y = (int*)ft_memalloc(sizeof(int) * (*ti)->xs * (*ti)->ys);
-        (*ti)->x = (int*)ft_memalloc(sizeof(int) * (*ti)->xs * (*ti)->ys);
-        (*ti)->z = (int*)ft_memalloc(sizeof(int) * (*ti)->xs * (*ti)->ys);
-        (*ti)->c = (unsigned int*)ft_memalloc(sizeof(unsigned int) * (*ti)->xs * (*ti)->ys);
+       (ti)->xs = count(temp);
+        (ti)->y = (int*)ft_memalloc(sizeof(int) * (ti)->xs * (ti)->ys);
+        (ti)->x = (int*)ft_memalloc(sizeof(int) * (ti)->xs * (ti)->ys);
+        (ti)->z = (int*)ft_memalloc(sizeof(int) * (ti)->xs * (ti)->ys);
+        (ti)->c = (unsigned int*)ft_memalloc(sizeof(unsigned int) * (ti)->xs * (ti)->ys);
         if (validate_row(ti, temp, ++i, -1) < 0)
             k = -1;
         free(temp);
@@ -148,17 +147,17 @@ int     read_map(t_i **ti, char *f, int i) // i = -1 ; f - file name
             free(temp);
         }
     }
-    print_state(ti);
+    //print_state(ti);
     free_type(ti);
     return (k);
 }
 
-void    print_state(t_i **ti)
+void    print_state(t_i *ti)
 {
     int i = -1;
-    printf(" xs =  %i\n", (*ti)->xs);
-    while (++i < (*ti)->cp){
-        printf(" y x z = %i %i %i c = %i\n", (*ti)->y[i], (*ti)->x[i], (*ti)->z[i], (*ti)->c[i]);
+    printf(" xs =  %i\n", (ti)->xs);
+    while (++i < (ti)->cp){
+        printf(" y x z = %i %i %i c = %i\n", (ti)->y[i], (ti)->x[i], (ti)->z[i], (ti)->c[i]);
 
     }
     

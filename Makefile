@@ -14,28 +14,25 @@ NAME = fdf
 
 FLAGS = -Wall -Werror -Wextra
 
-FILLER =  start.c read_map.c
+FDF =  start.c read_map.c process_map.c
 
 LIBFT = libft/libft.a
 
-COMPILED = $(FILLER:.c=.o)
+MNLX = minilibx/mlx.
 
-all:	$(NAME)
+COMPILED = $(FDF:.c=.o)
 
-$(NAME): $(COMPILED) $(LIBFT)
-	@gcc $(FLAGS) -o $(NAME) $(COMPILED) $(LIBFT)
+all: $(NAME)
 
-$(LIBFT):	liball
-
-liball:
-	@make -C ./libft
+$(NAME):
+	make -C libft/
+	gcc $(FLAGS) -lmlX $(FDF) -framework OpenGL -framework Appkit $(LIBFT) -o $(NAME)
 
 clean:
-	@rm -f *.o
-	@make clean -C ./libft
+	make clean -C libft/
 
-fclean:	clean
-	@make fclean -C ./libft
-	@rm  -f $(NAME)
+fclean:
+	make fclean -C libft/
+	rm -rf $(NAME)
 
 re: fclean all
