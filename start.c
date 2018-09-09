@@ -18,11 +18,24 @@ int		main(int argc, char **argv)
 
 //  read_map(&ti, argv[1], -1);
   if (argc != 2)
-    return (0);
-  printf("validation result: %i",read_map(&ti, argv[1], -1));
+  {
+      argv[0] = NULL;
+  }
+    // return (0);
+   printf("validation result: %i",read_map(&ti, argv[1], -1));
+
+
   ti.mlx_ptr = mlx_init();
-	ti.win_ptr = mlx_new_window(ti.mlx_ptr, 500, 500, "fdf");
+	choose_distance(&ti);
+	ti.win_ptr = mlx_new_window(ti.mlx_ptr, ti.dc, ti.dc, "fdf");
+  ti.img_ptr = mlx_new_image(ti.mlx_ptr, ti.dc, ti.dc);
+  ti.d = mlx_get_data_addr(ti.img_ptr, &(ti.bpp), &(ti.sl), &(ti.ei));
+  fill_dt(&ti);
+  printf("%d, %d, %d\n", ti.bpp, ti.sl, ti.ei);
+  mlx_put_image_to_window(ti.mlx_ptr,ti.win_ptr, ti.img_ptr, 0, 0);
 	mlx_loop(ti.mlx_ptr);
-  //while (1);
+  // while (1);
+  free_type(&ti);
 	return (0);
 }
+
