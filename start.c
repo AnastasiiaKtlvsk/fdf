@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
       argv[0] = NULL;
   }
     // return (0);
-   printf("validation result: %i",read_map(&ti, argv[1], -1));
+   printf("validation result: %i\n",read_map(&ti, argv[1], -1));
 
 
   ti.mlx_ptr = mlx_init();

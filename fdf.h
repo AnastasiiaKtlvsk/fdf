@@ -35,9 +35,13 @@ typedef	struct		s_i // image
 	int				*x;
 	int				*y;
 	int				*z;
+	int				*cx; //cx
+	int				*cy;
 	int				bpp;
 	int				sl;
 	int				ei;
+	int				px;
+	int				py;
 	unsigned int	*c; //points
 	
 }					t_i;
