@@ -24,7 +24,6 @@ int		main(int argc, char **argv)
     // return (0);
    printf("validation result: %i\n",read_map(&ti, argv[1], -1));
 
-
   ti.mlx_ptr = mlx_init();
 	choose_distance(&ti);
 	ti.win_ptr = mlx_new_window(ti.mlx_ptr, ti.dc, ti.dc, "fdf");
@@ -33,6 +32,8 @@ int		main(int argc, char **argv)
   fill_dt(&ti);
   printf("%d, %d, %d\n", ti.bpp, ti.sl, ti.ei);
   mlx_put_image_to_window(ti.mlx_ptr,ti.win_ptr, ti.img_ptr, 0, 0);
+
+  hook(&ti);
 	mlx_loop(ti.mlx_ptr);
   // while (1);
   free_type(&ti);

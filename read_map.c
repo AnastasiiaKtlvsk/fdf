@@ -7,7 +7,9 @@ void    free_type(t_i *ti)
   
     i = -1;
   //  free((*ti)->d); 
-	free(ti->x);
+	free(ti->cx);
+	free(ti->cy);
+    free(ti->x);
 	free(ti->y);
 	free(ti->z);
 	free(ti->c);
@@ -91,8 +93,8 @@ int     validate_row(t_i *ti, char *s, int y, int i) // n - norma , j = -1, i = 
     row = ft_strsplit(s, ' ');
     while (row[++i])
     {
-        ti->y[ti->cp] = y;
-        ti->x[ti->cp] = i;
+        ti->y[ti->cp] = y - ti->ys / 2;
+        ti->x[ti->cp] = i - ti->xs / 2;
         ti->z[ti->cp] = ft_atoi(row[i]);
         c = 0;
         if (ft_strchr(row[i], ','))
@@ -147,9 +149,6 @@ int     read_map(t_i *ti, char *f, int i) // i = -1 ; f - file name
             free(temp);
         }
     }
-  //  print_stateti;
-    
-   // free_type(ti);
     return (k);
 }
 

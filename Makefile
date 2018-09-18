@@ -14,7 +14,7 @@ NAME = fdf
 
 FLAGS = -Wall -Werror -Wextra
 
-FDF =  start.c read_map.c process_map.c   
+FDF =  start.c read_map.c process_map.c hook.c 
 
 LIBFT = libft/libft.a
 

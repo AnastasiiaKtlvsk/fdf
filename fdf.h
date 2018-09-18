@@ -40,9 +40,10 @@ typedef	struct		s_i // image
 	int				bpp;
 	int				sl;
 	int				ei;
-	int				px;
-	int				py;
 	unsigned int	*c; //points
+	double			a;
+	double			b;
+	double			w;
 	
 }					t_i;
 
@@ -52,6 +53,9 @@ void	brez(t_i *ti, int s, int d);
 void    free_type(t_i *ti);
 void	choose_distance(t_i *ti);
 
+void	process(t_i *ti);
+
+void	hook(t_i *ti);
 void    print_state(t_i *ti); // temp
 
 
